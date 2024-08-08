@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Handling</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+
+
+        .konten {
+
+
+            background-color: rgb(206, 206, 206);
+            padding: 5px;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+
+            align-items: center;
+            width: 500px;
+            height: 300px;
+
+        }
+
+        .isiForm {
+            display: flex;
+
+            max-width: 400px;
+            align-items: center;
+            text-align: center;
+
+        }
+
+        .formElemen {
+            align-items: flex-start;
+            display: flex;
+            flex-direction: column;
+            max-width: 400px;
+
+        }
+
+        input {
+            width: 300px;
+            height: 25px;
+        }
+
+        .submit {
+            margin-top: 10px;
+            width: 306px;
+        }
+    </style>
+</head>
+
+<body>
+    <div> Isi Formulir berikut: <input id="search"></div>
+    <div>penacarian anda adalah: <small id="count"></small>
+    </div>
+    <br>
+    <div class="konten">
+        <div class="judul">
+            <h1>INI ADALAH FORM</h1>
+        </div>
+        <div class="isiForm">
+            <form id="formulir">
+                <div class="formElemen">
+                    <label for="inputForm">Nama</label>
+                    <input type="text" name="nama" id="inputNama" placeholder="nama anda?" required>
+                </div>
+                <br>
+                <div class="formElemen">
+                    <label for="inputForm">Jurusan</label>
+                    <input type="text" name="jurusan" id="inputJurusan" placeholder="Jurusan anda?" required>
+                </div>
+                <div class="formElemen">
+                    <input class="submit" type="submit">
+                </div>
+
+            </form>
+
+
+        </div>
+        <h3 id="pesanTersembunyi"></h3>
+    </div>
+    </div>
+
+    <form action="" aria-placeholder="nama"></form>
+    <form action=""></form>
+</body>
+<script>
+    let search = document.getElementById('search');
+    let count = document.getElementById('count');
+    search.oninput = function () {
+        console.log(search.value);
+
+        count.innerText = search.value;
+    }
+
+
+
+    let submit = document.getElementById('formulir');
+
+    submit.addEventListener('submit', function () {
+        let nama = document.getElementById('inputNama').value;
+        let jurusan = document.getElementById('inputJurusan').value;
+        let pesan = document.getElementById('pesanTersembunyi');
+
+
+        pesan.innerText = `halo ${nama}, dari Jurusan ${jurusan}`
+        preventDefault();
+    })
+</script>
+
+</html>

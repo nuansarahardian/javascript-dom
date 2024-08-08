@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Event World</title>
+
+    <style>
+        .contents {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 2px solid black;
+            padding: 15px;
+        }
+
+        #generateButton {
+            margin-top: 5px;
+            margin-bottom: 15px;
+            ;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="contents" align="center" hidden>
+        <button id="tombolTambah">tambah</button>
+        <button id="tombolKurang" disabled>kurang</button>
+        <h3>Kamu sudah menekan tombol di atas sebanyak <span id="count">0</span></h3>
+    </div>
+
+
+</body>
+<script>
+    function welcome() {
+        alert('welcome back nuansa');
+        let unhidden = document.querySelector('.contents');
+        unhidden.removeAttribute('hidden');
+    }
+
+
+    function tambah() {
+        let adaKurang = document.getElementById('tombolKurang');
+        adaKurang.removeAttribute('disabled');
+        let angkaTambah = document.getElementById('count');
+        increment = parseInt(angkaTambah.innerText++)
+        updateTombol()
+        rahasia()
+    }
+
+    function kurang() {
+        let angkaKurang = document.getElementById('count');
+        increment = parseInt(angkaKurang.innerText--)
+
+        updateTombol()
+    }
+    function updateTombol() {
+        let hilang = document.getElementById('tombolKurang');
+        if (document.getElementById('count').innerText == 0) {
+
+            hilang.setAttribute('disabled', 'true');
+        } else {
+
+            hilang.removeAttribute('disabled');
+        }
+    }
+
+    function rahasia() {
+        if (document.getElementById('count').innerText == 5) {
+            let pesan = document.createElement('h1');
+            pesan.innerText = "nuansa ganteng";
+            let gambar = document.createElement('img');
+            gambar.setAttribute('src', 'https://www.bing.com/th?id=OIP.WC3WUdOUUUSG6pvrQtK3agHaFj&w=189&h=150&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2');
+            let muncul = document.querySelector('.contents');
+            muncul.appendChild(pesan)
+            muncul.appendChild(gambar)
+        }
+
+    }
+
+
+    // function increment() {
+    //     document.getElementById('count').innerText++;
+
+
+    //     
+    // }
+window.addEventListener('load', welcome)
+    // document.body.onload = welcome;
+    document.getElementById('tombolTambah').onclick = tambah;
+    document.getElementById('tombolKurang').onclick = kurang;
+
+</script>
+
+</html>

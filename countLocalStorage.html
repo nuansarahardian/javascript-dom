@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Event World</title>
+
+    <style>
+        .contents {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 2px solid black;
+            padding: 15px;
+        }
+
+        #generateButton {
+            margin-top: 5px;
+            margin-bottom: 15px;
+            ;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="contents" align="center" hidden>
+        <button id="tombolTambah">tambah</button>
+        <button id="tombolKurang" disabled>kurang</button>
+        <h3>Kamu sudah menekan tombol di atas sebanyak <span id="count"></span></h3>
+        <button id="tombolHapus">Hapus</button>
+    </div>
+
+
+</body>
+<script>
+    function welcome() {
+        alert('welcome back nuansa');
+        let unhidden = document.querySelector('.contents');
+        unhidden.removeAttribute('hidden');
+    }
+
+    const localStorageKey = 'PRESS_FREQUENCY';
+
+    if (typeof Storage != 'undefined') {
+        if (localStorage.getItem(localStorageKey) === null) {
+            localStorage.getItem(localStorageKey, 0)
+        }
+    }
+    const incrementButton = document.getElementById('tombolTambah');
+    const decrementButton = document.getElementById('tombolKurang')
+    const clearButton = document.getElementById('tombolHapus')
+    const countDisplay = document.getElementById('count')
+
+    countDisplay.innerText = localStorage.getItem(localStorageKey);
+
+    incrementButton.addEventListener('click', function () {
+        let count = localStorage.getItem(localStorageKey);
+        count++;
+        localStorage.setItem(localStorageKey, count);
+        console.log(count)
+        countDisplay.innerText = localStorage.getItem(localStorageKey)
+        let tombolKurang = document.getElementById('tombolKurang')
+        tombolKurang.removeAttribute('disabled')
+
+
+    }
+    );
+    decrementButton.addEventListener('click', function () {
+        let count = localStorage.getItem(localStorageKey);
+        count--;
+        localStorage.setItem(localStorageKey, count);
+        countDisplay.innerText = localStorage.getItem(localStorageKey)
+        if (countDisplay.innerText <= 0) {
+            let tombolKurang = document.getElementById('tombolKurang')
+            tombolKurang.setAttribute('disabled', 'true')
+        }
+
+    }
+    )
+
+    clearButton.addEventListener('click', function () {
+        localStorage.removeItem(localStorageKey);
+        countDisplay.innerText = 0;
+    })
+
+
+    window.addEventListener('load', welcome)
+    // // document.body.onload = welcome;
+    // document.getElementById('tombolTambah').onclick = tambah;
+    // document.getElementById('tombolKurang').onclick = kurang;
+
+
+</script>
+
+</html>
